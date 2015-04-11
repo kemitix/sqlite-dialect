@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.hibernate.dialect</groupId>
+  <groupId>net.kemitix</groupId>
   <artifactId>sqlite-dialect</artifactId>
   <packaging>jar</packaging>
   <version>0.1.0</version>
   <name>SQLite dialect for Hibernate</name>
   <description>SQLite dialect for Hibernate</description>
-  <url>https://github.com/gwenn/sqlite-dialect</url>
+  <url>https://github.com/kemitix/sqlite-dialect</url>
 
   <licenses>
     <license>
@@ -20,16 +20,54 @@
 
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/gwenn/sqlite-dialect/issues</url>
+    <url>https://github.com/kemitix/sqlite-dialect/issues</url>
   </issueManagement>
 
   <scm>
-    <connection>scm:git:https://github.com/gwenn/sqlite-dialect.git</connection>
-    <developerConnection>scm:git:git@github.com:gwenn/sqlite-dialect.git</developerConnection>
+    <connection>scm:git:https://github.com/kemitix/sqlite-dialect.git</connection>
+    <developerConnection>scm:git:git@github.com:kemitix/sqlite-dialect.git</developerConnection>
     <tag>HEAD</tag>
-    <url>https://github.com/gwenn/sqlite-dialect</url>
+    <url>https://github.com/kemitix/sqlite-dialect</url>
   </scm>
 
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>9</version>
+  </parent>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <configuration>
+                            <passphrase>${gpg.passphrase}</passphrase>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
   <properties>
     <java.version>1.6</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
