@@ -30,6 +30,12 @@
     <url>https://github.com/kemitix/sqlite-dialect</url>
   </scm>
 
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>9</version>
+  </parent>
+
   <properties>
     <java.version>1.6</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
